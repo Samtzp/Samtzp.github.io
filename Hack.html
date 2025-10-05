@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerta de Peligro</title>
+<style>
+  /* Estilos generales del body */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black; /* Fondo negro desde el inicio */
+    text-align: center;
+    cursor: pointer; /* Indica que se puede tocar */
+  }
+
+  /* Estilos del texto de alerta */
+  #alertText {
+    color: red; /* Texto rojo */
+    font-size: 16vw; /* Tamaño relativo al ancho de la pantalla */
+    font-weight: bold;
+    animation: blink 1s infinite;
+    line-height: 1.2;
+    word-wrap: break-word;
+    max-width: 90%;
+  }
+
+  /* Animación de parpadeo */
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Texto de alerta visible desde el inicio -->
+<div id="alertText">¡HAS SIDO HACKEADO!</div>
+
+<script>
+  // Función para activar pantalla completa
+  function enterFullScreen() {
+    const docEl = document.documentElement;
+    if (docEl.requestFullscreen) {
+      docEl.requestFullscreen();
+    } else if (docEl.webkitRequestFullscreen) { // Safari
+      docEl.webkitRequestFullscreen();
+    } else if (docEl.msRequestFullscreen) { // IE/Edge
+      docEl.msRequestFullscreen();
+    }
+  }
+
+  // Detecta cualquier toque/clic en la pantalla para activar fullscreen
+  document.body.addEventListener('click', () => {
+    enterFullScreen();
+  }, { once: true }); // Solo se ejecuta la primera vez que se toca
+</script>
+
+</body>
+</html>
